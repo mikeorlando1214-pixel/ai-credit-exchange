@@ -6,7 +6,7 @@
 'use strict';
 
 /* ─── CONFIG ─────────────────────────────────────────────────── */
-const API_BASE = '/s/2qopHBXP/_p/5000';
+const API_BASE = 'https://ai-credit-exchange-1.onrender.com';
 
 const PLATFORM_META = {
   openai:     { symbol: 'OAI', color: '#10A37F', name: 'OpenAI Credit' },
