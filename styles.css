@@ -185,7 +185,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 20px;
   white-space: nowrap;
-  animation: ticker 18s linear infinite;
+  animation: ticker 45s linear infinite;
   padding-left: 100%;
 }
 .ticker-item {
