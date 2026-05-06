@@ -971,7 +971,8 @@ a { color: inherit; text-decoration: none; }
 /* ═══════════════════════════════════════════════════════════════
    SHARED UTILITIES
 ═══════════════════════════════════════════════════════════════ */
-.btn-spinner { display: flex; align-items: center; }
+.btn-spinner { display: none; align-items: center; }
+.btn-spinner:not([hidden]) { display: flex; }
 .spin { animation: spin .7s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
