@@ -42,12 +42,67 @@ def static_files(filename):
 # ─────────────────────────────────────────────────────────────────
 EXCHANGE_RATES = {
     "openai": {
-        "openai":     Decimal("1.0"),
-        "perplexity": Decimal("1.85"),    # 1 OAI → 1.85 PPX
+        "openai":       Decimal("1.0"),
+        "perplexity":   Decimal("1.85"),    # 1 OAI → 1.85 PPX
+        "claude":       Decimal("0.92"),    # 1 OAI → 0.92 CLD
+        "gemini":       Decimal("1.10"),    # 1 OAI → 1.10 GEM
+        "huggingface":  Decimal("2.40"),    # 1 OAI → 2.40 HGF
+        "base44":       Decimal("3.15"),    # 1 OAI → 3.15 B44
+        "claw":         Decimal("1.55"),    # 1 OAI → 1.55 CLW
     },
     "perplexity": {
-        "perplexity": Decimal("1.0"),
-        "openai":     Decimal("0.5405"),  # 1 PPX → 0.5405 OAI
+        "perplexity":   Decimal("1.0"),
+        "openai":       Decimal("0.5405"),  # 1 PPX → 0.5405 OAI
+        "claude":       Decimal("0.4973"),  # 1 PPX → 0.4973 CLD
+        "gemini":       Decimal("0.5946"),  # 1 PPX → 0.5946 GEM
+        "huggingface":  Decimal("1.2973"),  # 1 PPX → 1.2973 HGF
+        "base44":       Decimal("1.7027"),  # 1 PPX → 1.7027 B44
+        "claw":         Decimal("0.8378"),  # 1 PPX → 0.8378 CLW
+    },
+    "claude": {
+        "claude":       Decimal("1.0"),
+        "openai":       Decimal("1.0870"),  # 1 CLD → 1.0870 OAI
+        "perplexity":   Decimal("2.0109"),  # 1 CLD → 2.0109 PPX
+        "gemini":       Decimal("1.1957"),  # 1 CLD → 1.1957 GEM
+        "huggingface":  Decimal("2.6087"),  # 1 CLD → 2.6087 HGF
+        "base44":       Decimal("3.4239"),  # 1 CLD → 3.4239 B44
+        "claw":         Decimal("1.6848"),  # 1 CLD → 1.6848 CLW
+    },
+    "gemini": {
+        "gemini":       Decimal("1.0"),
+        "openai":       Decimal("0.9091"),  # 1 GEM → 0.9091 OAI
+        "perplexity":   Decimal("1.6818"),  # 1 GEM → 1.6818 PPX
+        "claude":       Decimal("0.8364"),  # 1 GEM → 0.8364 CLD
+        "huggingface":  Decimal("2.1818"),  # 1 GEM → 2.1818 HGF
+        "base44":       Decimal("2.8636"),  # 1 GEM → 2.8636 B44
+        "claw":         Decimal("1.4091"),  # 1 GEM → 1.4091 CLW
+    },
+    "huggingface": {
+        "huggingface":  Decimal("1.0"),
+        "openai":       Decimal("0.4167"),  # 1 HGF → 0.4167 OAI
+        "perplexity":   Decimal("0.7708"),  # 1 HGF → 0.7708 PPX
+        "claude":       Decimal("0.3833"),  # 1 HGF → 0.3833 CLD
+        "gemini":       Decimal("0.4583"),  # 1 HGF → 0.4583 GEM
+        "base44":       Decimal("1.3125"),  # 1 HGF → 1.3125 B44
+        "claw":         Decimal("0.6458"),  # 1 HGF → 0.6458 CLW
+    },
+    "base44": {
+        "base44":       Decimal("1.0"),
+        "openai":       Decimal("0.3175"),  # 1 B44 → 0.3175 OAI
+        "perplexity":   Decimal("0.5873"),  # 1 B44 → 0.5873 PPX
+        "claude":       Decimal("0.2921"),  # 1 B44 → 0.2921 CLD
+        "gemini":       Decimal("0.3492"),  # 1 B44 → 0.3492 GEM
+        "huggingface":  Decimal("0.7619"),  # 1 B44 → 0.7619 HGF
+        "claw":         Decimal("0.4921"),  # 1 B44 → 0.4921 CLW
+    },
+    "claw": {
+        "claw":         Decimal("1.0"),
+        "openai":       Decimal("0.6452"),  # 1 CLW → 0.6452 OAI
+        "perplexity":   Decimal("1.1935"),  # 1 CLW → 1.1935 PPX
+        "claude":       Decimal("0.5935"),  # 1 CLW → 0.5935 CLD
+        "gemini":       Decimal("0.7097"),  # 1 CLW → 0.7097 GEM
+        "huggingface":  Decimal("1.5484"),  # 1 CLW → 1.5484 HGF
+        "base44":       Decimal("2.0323"),  # 1 CLW → 2.0323 B44
     },
 }
 
@@ -67,6 +122,36 @@ CREDIT_META = {
         "color":       "#FF6B2B",
         "description": "Perplexity AI API usage credits (sonar models)",
     },
+    "claude": {
+        "name":        "Claude Credit",
+        "symbol":      "CLD",
+        "color":       "#D97706",
+        "description": "Anthropic Claude API usage credits (Claude 3 family)",
+    },
+    "gemini": {
+        "name":        "Gemini Credit",
+        "symbol":      "GEM",
+        "color":       "#4285F4",
+        "description": "Google Gemini API usage credits (Gemini Pro, Ultra)",
+    },
+    "huggingface": {
+        "name":        "Hugging Face Credit",
+        "symbol":      "HGF",
+        "color":       "#FFD21E",
+        "description": "Hugging Face Inference API credits (open-source models)",
+    },
+    "base44": {
+        "name":        "Base44 Credit",
+        "symbol":      "B44",
+        "color":       "#7C3AED",
+        "description": "Base44 platform credits for AI app building",
+    },
+    "claw": {
+        "name":        "Claw Credit",
+        "symbol":      "CLW",
+        "color":       "#EC4899",
+        "description": "Claw AI platform usage credits",
+    },
 }
 
 # ─────────────────────────────────────────────────────────────────
@@ -76,8 +161,13 @@ CREDIT_META = {
 #  POST /api/vault/reset.
 # ─────────────────────────────────────────────────────────────────
 DEFAULT_VAULT_BALANCES = {
-    "openai":     Decimal("5000.00"),   # Starting OAI balance
-    "perplexity": Decimal("9250.00"),   # Starting PPX balance
+    "openai":       Decimal("5000.00"),   # Starting OAI balance
+    "perplexity":   Decimal("9250.00"),   # Starting PPX balance
+    "claude":       Decimal("4600.00"),   # Starting CLD balance
+    "gemini":       Decimal("5500.00"),   # Starting GEM balance
+    "huggingface":  Decimal("12000.00"),  # Starting HGF balance
+    "base44":       Decimal("15750.00"),  # Starting B44 balance
+    "claw":         Decimal("7750.00"),   # Starting CLW balance
 }
 
 # Live vault state (mutated by deposit/withdraw/exchange)
@@ -95,10 +185,24 @@ MAX_HISTORY = 200
 def normalize_currency(value: str):
     """Normalize currency identifier to lowercase internal key."""
     mapping = {
-        "openai":     "openai",
-        "oai":        "openai",
-        "perplexity": "perplexity",
-        "ppx":        "perplexity",
+        "openai":       "openai",
+        "oai":          "openai",
+        "perplexity":   "perplexity",
+        "ppx":          "perplexity",
+        "claude":       "claude",
+        "cld":          "claude",
+        "anthropic":    "claude",
+        "gemini":       "gemini",
+        "gem":          "gemini",
+        "google":       "gemini",
+        "huggingface":  "huggingface",
+        "hugging_face": "huggingface",
+        "hgf":          "huggingface",
+        "hf":           "huggingface",
+        "base44":       "base44",
+        "b44":          "base44",
+        "claw":         "claw",
+        "clw":          "claw",
     }
     return mapping.get(str(value).lower().strip(), None)
 
@@ -180,10 +284,11 @@ def convert():
     from_currency = normalize_currency(data.get("from_currency", ""))
     to_currency   = normalize_currency(data.get("to_currency", ""))
 
+    supported = ", ".join(CREDIT_META.keys())
     if not from_currency:
-        return jsonify({"success": False, "error": f"Unknown from_currency: '{data.get('from_currency')}'. Supported: openai, perplexity"}), 400
+        return jsonify({"success": False, "error": f"Unknown from_currency: '{data.get('from_currency')}'. Supported: {supported}"}), 400
     if not to_currency:
-        return jsonify({"success": False, "error": f"Unknown to_currency: '{data.get('to_currency')}'. Supported: openai, perplexity"}), 400
+        return jsonify({"success": False, "error": f"Unknown to_currency: '{data.get('to_currency')}'. Supported: {supported}"}), 400
 
     rate         = EXCHANGE_RATES[from_currency][to_currency]
     inverse_rate = EXCHANGE_RATES[to_currency][from_currency]

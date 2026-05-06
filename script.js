@@ -9,8 +9,13 @@
 const API_BASE = 'https://ai-credit-exchange-1.onrender.com';
 
 const PLATFORM_META = {
-  openai:     { symbol: 'OAI', color: '#10A37F', name: 'OpenAI Credit' },
-  perplexity: { symbol: 'PPX', color: '#FF6B2B', name: 'Perplexity Credit' },
+  openai:      { symbol: 'OAI', color: '#10A37F', name: 'OpenAI Credit' },
+  perplexity:  { symbol: 'PPX', color: '#FF6B2B', name: 'Perplexity Credit' },
+  claude:      { symbol: 'CLD', color: '#D97706', name: 'Claude Credit' },
+  gemini:      { symbol: 'GEM', color: '#4285F4', name: 'Gemini Credit' },
+  huggingface: { symbol: 'HGF', color: '#FFD21E', name: 'Hugging Face Credit' },
+  base44:      { symbol: 'B44', color: '#7C3AED', name: 'Base44 Credit' },
+  claw:        { symbol: 'CLW', color: '#EC4899', name: 'Claw Credit' },
 };
 
 const TYPE_ICONS = {
